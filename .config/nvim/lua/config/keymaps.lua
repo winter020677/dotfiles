@@ -4,6 +4,9 @@ local map = vim.keymap.set
 -- 基本操作
 -- ────────────────────────────────────────────
 
+-- Insert mode を抜ける
+map("i", "jj", "<Esc>", { desc = "Exit insert mode" })
+
 -- ESC で検索ハイライト消去
 map("n", "<Esc>", "<cmd>nohlsearch<cr>")
 

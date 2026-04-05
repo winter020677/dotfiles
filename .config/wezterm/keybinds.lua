@@ -1,12 +1,6 @@
 local wezterm = require("wezterm")
 local act = wezterm.action
 
--- Show active key table in the right status
-wezterm.on("update-right-status", function(window, pane)
-  local name = window:active_key_table()
-  window:set_right_status(name and ("TABLE: " .. name) or "")
-end)
-
 return {
   keys = {
     -- Workspace
@@ -57,14 +51,12 @@ return {
     { key = "j", mods = "LEADER", action = act.ActivatePaneDirection("Down") },
     { key = "z", mods = "LEADER", action = act.TogglePaneZoomState },
     { key = "[", mods = "CTRL|SHIFT", action = act.PaneSelect },
+    { key = "m", mods = "LEADER", action = act.PaneSelect({ mode = "SwapWithActive" }) },
 
     -- Font
     { key = "+", mods = "CTRL", action = act.IncreaseFontSize },
     { key = "-", mods = "CTRL", action = act.DecreaseFontSize },
     { key = "0", mods = "CTRL", action = act.ResetFontSize },
-
-    -- Fullscreen
-    { key = "Enter", mods = "ALT", action = act.ToggleFullScreen },
 
     -- Clipboard
     { key = "c", mods = "SHIFT|CTRL", action = act.CopyTo("Clipboard") },
