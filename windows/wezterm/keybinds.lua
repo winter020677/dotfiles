@@ -14,7 +14,7 @@ return {
         end),
       }),
     },
-    { key = "W", mods = "LEADER|SHIFT", action = act.PromptInputLine({
+    { key = "w", mods = "LEADER|SHIFT", action = act.PromptInputLine({
         description = "(wezterm) Create new workspace:",
         action = wezterm.action_callback(function(win, pane, line)
           if line then
