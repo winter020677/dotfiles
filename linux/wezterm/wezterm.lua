@@ -6,59 +6,64 @@ local config = wezterm.config_builder()
 -- 基本設定
 config.automatically_reload_config = true
 config.font_size = 12.0
-config.use_ime = true
-config.window_background_opacity = 0.90
+config.use_ime = false
+config.window_background_opacity = 0.85
+config.max_fps = 60
+config.animation_fps = 1
 
--- ピンク系カラーテーマ
+-- Kanagawa Wave
 config.colors = {
-  foreground = "#f5d0f0",
-  background = "#0a080c",
-  cursor_bg = "#ff79c6",
-  cursor_border = "#ff79c6",
-  cursor_fg = "#0a080c",
-  selection_bg = "#3d1a4a",
-  selection_fg = "#f5d0f0",
+  foreground = "#dcd7ba",
+  background = "#1f1f28",
+  cursor_bg = "#c8c093",
+  cursor_border = "#c8c093",
+  cursor_fg = "#1f1f28",
+  selection_bg = "#2d4f67",
+  selection_fg = "#dcd7ba",
   ansi = {
-    "#0a080c", -- black
-    "#ff5c8a", -- red
-    "#c0e86a", -- green
-    "#ffb86c", -- yellow
-    "#c792ea", -- blue
-    "#ff79c6", -- magenta (pink!)
-    "#80d9f5", -- cyan
-    "#f5d0f0", -- white
+    "#090618", -- black
+    "#c34043", -- red
+    "#76946a", -- green
+    "#c0a36e", -- yellow
+    "#7e9cd8", -- blue
+    "#957fb8", -- magenta
+    "#6a9589", -- cyan
+    "#c8c093", -- white
   },
   brights = {
-    "#5a3a5e", -- bright black
-    "#ff85a0", -- bright red
-    "#d4f57a", -- bright green
-    "#ffd580", -- bright yellow
-    "#d5a0ff", -- bright blue
-    "#ffaadd", -- bright magenta
-    "#a8eeff", -- bright cyan
-    "#ffffff", -- bright white
+    "#727169", -- bright black
+    "#e82424", -- bright red
+    "#98bb6c", -- bright green
+    "#e6c384", -- bright yellow
+    "#7fb4ca", -- bright blue
+    "#938aa9", -- bright magenta
+    "#7aa89f", -- bright cyan
+    "#dcd7ba", -- bright white
   },
   tab_bar = {
-    background = "#080608",
+    background = "#15161e",
     active_tab = {
-      bg_color = "#ff79c6",
-      fg_color = "#0a080c",
+      bg_color = "#7e9cd8",
+      fg_color = "#15161e",
       intensity = "Bold",
     },
     inactive_tab = {
-      bg_color = "#2d1a35",
-      fg_color = "#c090b0",
+      bg_color = "#1f1f28",
+      fg_color = "#727169",
     },
     inactive_tab_hover = {
-      bg_color = "#4a2060",
-      fg_color = "#f5d0f0",
+      bg_color = "#2a2a37",
+      fg_color = "#dcd7ba",
     },
     new_tab = {
-      bg_color = "#080608",
-      fg_color = "#c090b0",
+      bg_color = "#15161e",
+      fg_color = "#727169",
     },
   },
 }
+
+-- フォント
+config.font = wezterm.font({ family = "JetBrains Mono", weight = "Regular" })
 
 -- 枠なし風フルスクリーン対応
 config.window_frame = {
@@ -76,16 +81,26 @@ config.window_padding = {
 -- ペイン/ウィンドウを閉じる際の確認ポップアップを無効化
 config.window_close_confirmation = "NeverPrompt"
 
--- タブバー
+-- タブバ���
 config.use_fancy_tab_bar = true
 config.show_tabs_in_tab_bar = true
 config.hide_tab_bar_if_only_one_tab = true
 config.show_new_tab_button_in_tab_bar = false
+config.show_close_tab_button_in_tabs = false
 
 -- キーバインド
 config.disable_default_key_bindings = true
 config.leader = { key = "g", mods = "CTRL", timeout_milliseconds = 2000 }
 config.keys = keybinds.keys
 config.key_tables = keybinds.key_tables
+
+-- 右ステータスにキーテーブル名表示
+wezterm.on("update-right-status", function(window, pane)
+  local name = window:active_key_table()
+  if name then
+    name = "TABLE: " .. name
+  end
+  window:set_right_status(name or "")
+end)
 
 return config
