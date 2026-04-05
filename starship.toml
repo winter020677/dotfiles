@@ -1,0 +1,30 @@
+# 全体テーマ
+add_newline = true
+[character]
+format = "[❯](fg:#FFB6C1) "  # ピンク
+
+[directory]
+style = "fg:#FFB6C1 bg:#1d1f2b bold"
+format = "[ $path ]($style)"
+
+[directory.substitutions]
+"Documents" = "󰈙 "
+"Downloads" = " "
+"Music" = " "
+"Pictures" = " "
+
+[git_branch]
+format = '[ $branch](fg:#FFB6C1 bg:#1d1f2b)'
+
+[git_status]
+format = '[($all_status$ahead_behind)](fg:#FFB6C1 bg:#1d1f2b)'
+
+[cmd_duration]
+format = "[$duration](fg:#FFB6C1)"
+
+[time]
+format = '[   $time ](fg:#FFB6C1)'
+
+[username]
+format = "[$user](fg:#FFB6C1) "
+disabled = false
