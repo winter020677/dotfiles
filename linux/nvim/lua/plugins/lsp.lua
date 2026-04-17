@@ -21,16 +21,14 @@ return {
         ensure_installed = { "ruff", "pyright" },
       })
 
-      -- 新APIで設定（nvim-lspconfig のデフォルトconfigsを活用）
-      -- ruff（優先: 速いlint/format/imports整理）
+      local capabilities = require("cmp_nvim_lsp").default_capabilities()
+
       vim.lsp.config('ruff', {
-        -- 必要に応じてカスタム（デフォルトでOKなら空でも動く）
-        -- settings = { ... },
+        capabilities = capabilities,
       })
 
       vim.lsp.config('pyright', {
-        -- pyrightの型チェック強い場合のカスタム例
-        -- settings = { python = { analysis = { ... } } },
+        capabilities = capabilities,
       })
 
       -- 自動有効化（ファイルタイプで起動）
