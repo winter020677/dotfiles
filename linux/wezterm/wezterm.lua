@@ -7,9 +7,12 @@ local config = wezterm.config_builder()
 config.automatically_reload_config = true
 config.font_size = 12.0
 config.use_ime = false
-config.window_background_opacity = 0.85
+config.window_background_opacity = 0.9
 config.max_fps = 60
 config.animation_fps = 1
+
+-- タイトルバー非表示
+config.window_decorations = "RESIZE"
 
 -- Kanagawa Wave
 config.colors = {
@@ -81,7 +84,7 @@ config.window_padding = {
 -- ペイン/ウィンドウを閉じる際の確認ポップアップを無効化
 config.window_close_confirmation = "NeverPrompt"
 
--- タブバ���
+-- タブバー
 config.use_fancy_tab_bar = true
 config.show_tabs_in_tab_bar = true
 config.hide_tab_bar_if_only_one_tab = true
