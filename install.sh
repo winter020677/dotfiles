@@ -29,4 +29,10 @@ backup "$HOME/.bashrc"
 ln -sfn "$LINUX_DIR/bash/.bashrc" "$HOME/.bashrc"
 echo "リンク作成: ~/.bashrc -> $LINUX_DIR/bash/.bashrc"
 
+# starship
+mkdir -p "$HOME/.config"
+backup "$HOME/.config/starship.toml"
+ln -sf "$DOTFILES_DIR/starship.toml" "$HOME/.config/starship.toml"
+echo "リンク作成: ~/.config/starship.toml -> $DOTFILES_DIR/starship.toml"
+
 echo "セットアップ完了"

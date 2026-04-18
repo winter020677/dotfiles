@@ -29,4 +29,12 @@ Backup-Path $WeztermTarget
 New-Item -ItemType Junction -Path $WeztermTarget -Target (Join-Path $WindowsDir "wezterm") -Force | Out-Null
 Write-Host "junction: $WeztermTarget -> $WindowsDir\wezterm"
 
+# starship
+$StarshipTarget = Join-Path $env:USERPROFILE ".config\starship.toml"
+$StarshipParent = Split-Path $StarshipTarget
+if (-not (Test-Path $StarshipParent)) { New-Item -ItemType Directory -Path $StarshipParent | Out-Null }
+Backup-Path $StarshipTarget
+New-Item -ItemType SymbolicLink -Path $StarshipTarget -Target (Join-Path $DotfilesDir "starship.toml") -Force | Out-Null
+Write-Host "symlink: $StarshipTarget -> $DotfilesDir\starship.toml"
+
 Write-Host "setup complete"

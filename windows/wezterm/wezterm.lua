@@ -8,7 +8,7 @@ config.default_prog = { "wsl.exe", "-d", "Ubuntu", "--cd", "~" }
 
 -- 基本設定
 config.automatically_reload_config = true
-config.font_size = 12.0
+config.font_size = 13.0
 config.use_ime = false
 config.window_background_opacity = 0.9
 -- config.win32_system_backdrop = "Acrylic"
@@ -70,12 +70,12 @@ config.colors = {
 }
 
 -- フォント
-config.font = wezterm.font({ family = "JetBrains Mono", weight = "Regular" })
+config.font = wezterm.font({ family = "HackGen Console NF", weight = "Bold" })
 
 -- 枠なし風フルスクリーン対応
 config.window_frame = {
-  font = wezterm.font({ family = "JetBrains Mono", weight = "Regular" }),
-  font_size = 12.0,
+  font = wezterm.font({ family = "HackGen Console NF", weight = "Bold" }),
+  font_size = 13.0,
   active_titlebar_bg = "#080608",
   inactive_titlebar_bg = "#080608",
 }

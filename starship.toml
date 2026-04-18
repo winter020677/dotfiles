@@ -14,6 +14,7 @@ format = "[ $path ]($style)"
 "Pictures" = " "
 
 [git_branch]
+disabled = false
 format = '[ $branch](fg:#FFB6C1 bg:#1d1f2b)'
 
 [git_status]
