@@ -51,6 +51,7 @@ return {
     { key = "d", mods = "LEADER", action = wezterm.action_callback(function(window, pane)
         local cwd = pane:get_current_working_dir()
         local path = cwd and cwd.file_path or nil
+        wezterm.log_info("split cwd: " .. tostring(path))
         local new_pane = pane:split({ direction = "Bottom" })
         if path then new_pane:send_text("cd " .. path .. "\n") end
       end)
@@ -58,6 +59,7 @@ return {
     { key = "r", mods = "LEADER", action = wezterm.action_callback(function(window, pane)
         local cwd = pane:get_current_working_dir()
         local path = cwd and cwd.file_path or nil
+        wezterm.log_info("split cwd: " .. tostring(path))
         local new_pane = pane:split({ direction = "Right" })
         if path then new_pane:send_text("cd " .. path .. "\n") end
       end)
