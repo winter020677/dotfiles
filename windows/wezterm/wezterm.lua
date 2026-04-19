@@ -5,6 +5,7 @@ local config = wezterm.config_builder()
 
 -- WSLをデフォルトで起動
 config.default_prog = { "wsl.exe" }
+config.default_cwd = "//wsl$/Ubuntu/home/winter/Desktop"
 
 -- 基本設定
 config.automatically_reload_config = true
