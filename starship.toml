@@ -1,5 +1,6 @@
 # 全体テーマ
 add_newline = true
+scan_timeout = 1000
 [character]
 format = "[❯](fg:#FFB6C1) "  # ピンク
 

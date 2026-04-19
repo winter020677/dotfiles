@@ -124,3 +124,6 @@ export EDITOR="nvim"
 export VISUAL="nvim"
 alias nbsync="nb all-thinking:sync"
 eval "$(starship init bash)"
+
+# WezTerm にカレントディレクトリを通知 (OSC 7) ※starship init の後に設定
+PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND; }printf '\033]7;file://%s\033\\' \"$PWD\""
