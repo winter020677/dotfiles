@@ -48,8 +48,16 @@ return {
     { key = "9", mods = "SUPER", action = act.ActivateTab(-1) },
 
     -- Panes
-    { key = "d", mods = "LEADER", action = act.SplitVertical({ domain = "CurrentPaneDomain" }) },
-    { key = "r", mods = "LEADER", action = act.SplitHorizontal({ domain = "CurrentPaneDomain" }) },
+    { key = "d", mods = "LEADER", action = wezterm.action_callback(function(window, pane)
+        local cwd = pane:get_current_working_dir()
+        window:perform_action(act.SplitVertical({ domain = "CurrentPaneDomain", cwd = cwd and cwd.file_path or nil }), pane)
+      end)
+    },
+    { key = "r", mods = "LEADER", action = wezterm.action_callback(function(window, pane)
+        local cwd = pane:get_current_working_dir()
+        window:perform_action(act.SplitHorizontal({ domain = "CurrentPaneDomain", cwd = cwd and cwd.file_path or nil }), pane)
+      end)
+    },
     { key = "q", mods = "LEADER", action = act.CloseCurrentPane({ confirm = false }) },
     { key = "h", mods = "LEADER", action = act.ActivatePaneDirection("Left") },
     { key = "l", mods = "LEADER", action = act.ActivatePaneDirection("Right") },
