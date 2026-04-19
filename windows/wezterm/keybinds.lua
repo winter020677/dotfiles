@@ -50,12 +50,16 @@ return {
     -- Panes
     { key = "d", mods = "LEADER", action = wezterm.action_callback(function(window, pane)
         local cwd = pane:get_current_working_dir()
-        window:perform_action(act.SplitVertical({ domain = "CurrentPaneDomain", cwd = cwd and cwd.file_path or nil }), pane)
+        local path = cwd and cwd.file_path or nil
+        local new_pane = pane:split({ direction = "Bottom" })
+        if path then new_pane:send_text("cd " .. path .. "\n") end
       end)
     },
     { key = "r", mods = "LEADER", action = wezterm.action_callback(function(window, pane)
         local cwd = pane:get_current_working_dir()
-        window:perform_action(act.SplitHorizontal({ domain = "CurrentPaneDomain", cwd = cwd and cwd.file_path or nil }), pane)
+        local path = cwd and cwd.file_path or nil
+        local new_pane = pane:split({ direction = "Right" })
+        if path then new_pane:send_text("cd " .. path .. "\n") end
       end)
     },
     { key = "q", mods = "LEADER", action = act.CloseCurrentPane({ confirm = false }) },
