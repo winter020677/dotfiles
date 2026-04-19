@@ -1,22 +1,26 @@
 return {
+  -- 括弧・引用符の自動閉じ
   {
     "windwp/nvim-autopairs",
     event = "InsertEnter",
-    opts = { check_ts = true },
+    opts = { check_ts = true },  -- Treesitter で文脈判断
   },
 
+  -- テキストの囲み操作（ys/ds/cs）
   {
     "kylechui/nvim-surround",
     event = "VeryLazy",
     opts = {},
   },
 
+  -- コメントアウト（gcc / gc + motion）
   {
     "numToStr/Comment.nvim",
     event = "VeryLazy",
     opts = {},
   },
 
+  -- TODO / FIXME / HACK などをハイライト
   {
     "folke/todo-comments.nvim",
     event = "VeryLazy",
@@ -27,6 +31,7 @@ return {
     },
   },
 
+  -- Git サイン（追加・変更・削除を左端に表示）＋ hunk 操作
   {
     "lewis6991/gitsigns.nvim",
     event = "VeryLazy",
@@ -40,14 +45,15 @@ return {
       },
     },
     keys = {
-      { "]h",        function() require("gitsigns").next_hunk() end,    desc = "Next hunk" },
-      { "[h",        function() require("gitsigns").prev_hunk() end,    desc = "Prev hunk" },
+      { "]h", function() require("gitsigns").next_hunk() end, desc = "Next hunk" },
+      { "[h", function() require("gitsigns").prev_hunk() end, desc = "Prev hunk" },
       { "<leader>gp", function() require("gitsigns").preview_hunk() end, desc = "Preview hunk" },
       { "<leader>gr", function() require("gitsigns").reset_hunk() end,   desc = "Reset hunk" },
       { "<leader>gb", function() require("gitsigns").blame_line() end,   desc = "Blame line" },
     },
   },
 
+  -- ステータスライン
   {
     "nvim-lualine/lualine.nvim",
     event = "VeryLazy",
@@ -78,40 +84,5 @@ return {
         lualine_z = { "location" },
       },
     },
-  },
-
-  {
-    "folke/trouble.nvim",
-    event = "VeryLazy",
-    opts = {},
-    keys = {
-      { "<leader>xx", "<cmd>Trouble diagnostics toggle<cr>",                        desc = "Diagnostics" },
-      { "<leader>xb", "<cmd>Trouble diagnostics toggle filter.buf=0<cr>",           desc = "Buffer diagnostics" },
-      { "<leader>xs", "<cmd>Trouble symbols toggle focus=false<cr>",                desc = "Symbols" },
-      { "<leader>xl", "<cmd>Trouble lsp toggle focus=false win.position=right<cr>", desc = "LSP definitions" },
-    },
-  },
-
-  {
-    "folke/flash.nvim",
-    event = "VeryLazy",
-    opts = {},
-    keys = {
-      { "s",     function() require("flash").jump() end,              mode = { "n", "x", "o" }, desc = "Flash jump" },
-      { "S",     function() require("flash").treesitter() end,        mode = { "n", "x", "o" }, desc = "Flash treesitter" },
-      { "r",     function() require("flash").remote() end,            mode = "o",               desc = "Flash remote" },
-      { "<c-s>", function() require("flash").toggle() end,            mode = "c",               desc = "Flash search toggle" },
-    },
-  },
-
-  {
-    "RRethy/vim-illuminate",
-    event = "VeryLazy",
-    config = function()
-      require("illuminate").configure({
-        delay = 200,
-        large_file_cutoff = 2000,
-      })
-    end,
   },
 }

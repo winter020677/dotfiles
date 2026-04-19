@@ -10,10 +10,6 @@ return {
       { "<leader>c", group = "code / LSP" },
       { "<leader>g", group = "git" },
       { "<leader>b", group = "buffer" },
-      { "<leader>t", group = "test" },
-      { "<leader>h", group = "http" },
-      { "<leader>x", group = "trouble" },
-      { "<leader>d", group = "DAP" },
     },
   },
 }

@@ -1,11 +1,10 @@
 return {
   "nvim-treesitter/nvim-treesitter",
   build = ":TSUpdate",
-  event = { "BufReadPost", "BufNewFile" },
-  main = "nvim-treesitter.config",
+  main = "nvim-treesitter.config",  -- ← これを 'config' に変更！（configs → config）
   config = function()
-    require("nvim-treesitter.config").setup({
-      ensure_installed = { "python", "lua", "vim", "vimdoc", "query", "json", "yaml", "toml", "html", "markdown", "markdown_inline" },
+    require("nvim-treesitter.config").setup({  -- ← require も config に変更
+      ensure_installed = { "python", "lua", "vim", "vimdoc", "query" },
       highlight = { enable = true },
       indent = { enable = true },
       incremental_selection = { enable = true },

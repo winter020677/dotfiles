@@ -1,7 +1,7 @@
 return {
+  -- nvim-cmp 本体（補完エンジン）
   {
     "hrsh7th/nvim-cmp",
-    event = { "InsertEnter", "CmdlineEnter" },
     dependencies = {
       "hrsh7th/cmp-nvim-lsp",     -- LSPソース
       "hrsh7th/cmp-buffer",       -- buffer内の単語

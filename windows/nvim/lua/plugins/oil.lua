@@ -1,6 +1,6 @@
 return {
   "stevearc/oil.nvim",
-  lazy = true,
+  lazy = false,
   keys = {
     { "<leader>e", "<cmd>Oil<cr>", desc = "Open Oil (current dir)" },
     { "<leader>E", function() require("oil").open(vim.fn.getcwd()) end, desc = "Open Oil (cwd)" },

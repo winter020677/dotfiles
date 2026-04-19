@@ -1,25 +1,28 @@
 return {
   "folke/snacks.nvim",
-  event = "VeryLazy",
+  priority = 1000,  -- 早めにロード（dashboardとかのため）
+  lazy = false,     -- 起動時ロード（おすすめ）
   ---@type snacks.Config
   opts = {
-    bigfile   = { enabled = true },
-    quickfile = { enabled = true },
-    indent    = { enabled = true },
-    dashboard = { enabled = false },
-    picker    = { enabled = true },
-    explorer  = { enabled = false },
-    lazygit   = { enabled = true },
-    image     = { enabled = false },
-    animate   = { enabled = true },
-    zen       = { enabled = true },
-    terminal  = { enabled = true },
+    -- 基本的にデフォルトでOKだけど、Python開発向けに調整例
+    bigfile = { enabled = true },          -- 大きいPythonファイル（データ処理スクリプト）でも重くならない
+    quickfile = { enabled = true },        -- 素早くファイル開く
+    indent = { enabled = true },           -- インデントガイド（Pythonのインデント命！）
+    dashboard = { enabled = true },        -- かっこいいスタート画面
+    picker = { enabled = true },           -- Snacksの高速picker（Telescope代替）
+    explorer = { enabled = false },         -- ファイラー（oil.nvim卒業可能）
+    lazygit = { enabled = true },          -- lazygitをfloatで開く（git操作楽）
+    image = { enabled = true },            -- markdownなどに画像表示（ドキュメント書くとき便利）
+    animate = { enabled = true },          -- スムーズアニメーション
+    zen = { enabled = true },              -- zen mode（集中モード）
+    terminal = { enabled = true },         -- ターミナル統合
   },
   keys = {
-    { "<leader>sf", function() Snacks.picker.files() end,   desc = "Find Files" },
-    { "<leader>sg", function() Snacks.picker.grep() end,    desc = "Grep" },
-    { "<leader>se", function() Snacks.explorer() end,       desc = "Explorer" },
-    { "<leader>gz", function() Snacks.lazygit() end,        desc = "Lazygit" },
-    { "<leader>z",  function() Snacks.zen() end,            desc = "Zen Mode" },
+    -- よく使うキー例（好みで変えて）
+    { "<leader>sf", function() Snacks.picker.files() end, desc = "Find Files (Snacks)" },
+    { "<leader>sg", function() Snacks.picker.grep() end, desc = "Grep (Snacks)" },
+    { "<leader>se", function() Snacks.explorer() end, desc = "Explorer" },
+    { "<leader>gz", function() Snacks.lazygit() end, desc = "Lazygit" },
+    { "<leader>z", function() Snacks.zen() end, desc = "Zen Mode" },
   },
 }

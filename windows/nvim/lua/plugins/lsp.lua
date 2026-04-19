@@ -1,46 +1,38 @@
 return {
+  -- Mason: ツール自動インストール
   { "williamboman/mason.nvim", config = true },
-  { "williamboman/mason-lspconfig.nvim" },
-  { "b0o/SchemaStore.nvim" },
 
+  -- Mason と lspconfig の橋渡し（自動インストール用）
+  { "williamboman/mason-lspconfig.nvim" },
+
+  -- LSP設定（新API: vim.lsp.config + vim.lsp.enable）
   {
     "neovim/nvim-lspconfig",
-    event = { "BufReadPost", "BufNewFile" },
     dependencies = {
       "williamboman/mason.nvim",
       "williamboman/mason-lspconfig.nvim",
-      "b0o/SchemaStore.nvim",
     },
     config = function()
+      -- Masonセットアップ
       require("mason").setup()
+
+      -- 自動インストール（ruff と pyright）
       require("mason-lspconfig").setup({
-        ensure_installed = { "ruff", "pyright", "jsonls", "yamlls" },
+        ensure_installed = { "ruff", "pyright" },
       })
 
-      local schemastore = require("schemastore")
+      local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
-      vim.lsp.config("ruff", {})
-      vim.lsp.config("pyright", {})
-
-      vim.lsp.config("jsonls", {
-        settings = {
-          json = {
-            schemas = schemastore.json.schemas(),
-            validate = { enable = true },
-          },
-        },
+      vim.lsp.config('ruff', {
+        capabilities = capabilities,
       })
 
-      vim.lsp.config("yamlls", {
-        settings = {
-          yaml = {
-            schemaStore = { enable = false, url = "" },
-            schemas = schemastore.yaml.schemas(),
-          },
-        },
+      vim.lsp.config('pyright', {
+        capabilities = capabilities,
       })
 
-      vim.lsp.enable({ "ruff", "pyright", "jsonls", "yamlls" })
+      -- 自動有効化（ファイルタイプで起動）
+      vim.lsp.enable({ "ruff", "pyright" })
     end,
   },
 }

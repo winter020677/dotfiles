@@ -2,7 +2,7 @@ local o = vim.opt
 
 -- 行番号
 o.number         = true
-o.relativenumber = false
+o.relativenumber = true
 
 -- インデント（スペース2つ）
 o.expandtab  = true
@@ -34,7 +34,7 @@ o.signcolumn = "yes"
 
 -- 更新間隔を短く（LSP診断・gitサインが早く出る）
 o.updatetime  = 250
-o.timeoutlen  = 300
+o.timeoutlen  = 300   -- which-key の表示タイミングと合わせる
 
 -- 折り返しなし
 o.wrap = false

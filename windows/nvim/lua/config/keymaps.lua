@@ -4,11 +4,11 @@ local map = vim.keymap.set
 -- 基本操作
 -- ────────────────────────────────────────────
 
--- Insert mode を抜ける
-map("i", "jj", "<Esc>", { desc = "Exit insert mode" })
-
 -- ESC で検索ハイライト消去
 map("n", "<Esc>", "<cmd>nohlsearch<cr>")
+
+-- jj でインサートモード脱出
+map("i", "jj", "<Esc>")
 
 -- ファイル保存
 map({ "n", "i" }, "<C-s>", "<cmd>w<cr><Esc>", { desc = "Save file" })
@@ -16,6 +16,9 @@ map({ "n", "i" }, "<C-s>", "<cmd>w<cr><Esc>", { desc = "Save file" })
 -- 新規行を挿入モードなしで追加
 map("n", "<leader>o", "o<Esc>", { desc = "New line below" })
 map("n", "<leader>O", "O<Esc>", { desc = "New line above" })
+
+-- 現在行を下に複製
+map("n", "<leader>D", "yyp", { desc = "Duplicate line below" })
 
 -- ────────────────────────────────────────────
 -- 移動
@@ -55,6 +58,12 @@ map("v", ">", ">gv")
 
 -- ペースト時にレジスタを汚さない
 map("v", "p", '"_dP')
+
+-- ────────────────────────────────────────────
+-- ダッシュボード
+-- ────────────────────────────────────────────
+
+map("n", "<leader>q", "<cmd>lua require('mini.starter').open()<cr>", { desc = "Open dashboard" })
 
 -- ────────────────────────────────────────────
 -- バッファ

@@ -3,15 +3,11 @@ local keybinds = require("keybinds") -- 先ほどの keybinds.lua を使用
 
 local config = wezterm.config_builder()
 
--- デフォルトシェルをWSLに設定
-config.default_prog = { "wsl.exe", "-d", "Ubuntu", "--cd", "~" }
-
 -- 基本設定
 config.automatically_reload_config = true
 config.font_size = 13.0
 config.use_ime = false
 config.window_background_opacity = 0.9
--- config.win32_system_backdrop = "Acrylic"
 config.max_fps = 60
 config.animation_fps = 1
 
@@ -74,7 +70,7 @@ config.font = wezterm.font({ family = "HackGen Console NF", weight = "Bold" })
 
 -- 枠なし風フルスクリーン対応
 config.window_frame = {
-  font = wezterm.font({ family = "HackGen Console NF", weight = "Bold" }),
+  font = wezterm.font({ family = "Hack Nerd Font", weight = "Regular" }),
   font_size = 13.0,
   active_titlebar_bg = "#080608",
   inactive_titlebar_bg = "#080608",
