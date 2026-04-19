@@ -3,6 +3,9 @@ local keybinds = require("keybinds") -- 先ほどの keybinds.lua を使用
 
 local config = wezterm.config_builder()
 
+-- WSLをデフォルトで起動
+config.default_prog = { "wsl.exe" }
+
 -- 基本設定
 config.automatically_reload_config = true
 config.font_size = 13.0
