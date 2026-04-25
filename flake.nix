@@ -1,5 +1,5 @@
 {
-  description = "winter's home-manager configuration";
+  description = "winter's dotfiles";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
@@ -9,10 +9,19 @@
     };
   };
 
-  outputs = { nixpkgs, home-manager, ... }: {
-    homeConfigurations."winter@ubuntu" = home-manager.lib.homeManagerConfiguration {
-      pkgs = nixpkgs.legacyPackages.x86_64-linux;
-      modules = [ ./home.nix ];
+  outputs = { nixpkgs, home-manager, ... }: let
+    system = "x86_64-linux";
+    pkgs = nixpkgs.legacyPackages.${system};
+  in {
+    homeConfigurations = {
+      "winter@ubuntu" = home-manager.lib.homeManagerConfiguration {
+        inherit pkgs;
+        modules = [ ./home/common.nix ./home/ubuntu.nix ];
+      };
+      "winter@wsl" = home-manager.lib.homeManagerConfiguration {
+        inherit pkgs;
+        modules = [ ./home/common.nix ./home/wsl.nix ];
+      };
     };
   };
 }
