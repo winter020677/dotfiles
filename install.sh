@@ -35,4 +35,9 @@ backup "$HOME/.config/starship.toml"
 ln -sf "$DOTFILES_DIR/starship.toml" "$HOME/.config/starship.toml"
 echo "リンク作成: ~/.config/starship.toml -> $DOTFILES_DIR/starship.toml"
 
+# zsh
+backup "$HOME/.zshrc"
+ln -sfn "$LINUX_DIR/zsh/.zshrc" "$HOME/.zshrc"
+echo "リンク作成: ~/.zshrc -> $LINUX_DIR/zsh/.zshrc"
+
 echo "セットアップ完了"
